@@ -23,7 +23,7 @@ public class Main {
      */
     public static void main(String[] args) {
           ControlRegex rex = new ControlRegex();
-        System.out.println(rex.RecupérationAlphabetDuRegex("(a+b)cccccfdh022gtj"));
+        System.out.println(rex.VerifierQueLeRegexEstBienParentheser("((((0))))((())))"));
 
         // VerifierQueLeRegexEstBienFormer(Regex);
         // VerifierQueLeRegexEstBienParentheser(Regex);

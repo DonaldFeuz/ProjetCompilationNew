@@ -26,8 +26,30 @@ public class ControlRegex {
     // cette methode suivante nous permetra de savoir si un regex est bien
     // parenthèser et envoyer un message d'erreur aux cas contraire
     public boolean VerifierQueLeRegexEstBienParentheser(String Regex) {
-
-        return false;
+        int nbrouvrant = 0;
+        int nbrfermente = 0;
+        for (int i = 0; i < Regex.length(); i++) {
+            if (Regex.charAt(i) == '(' ) {
+                if ( nbrfermente == 0 ) {
+                    nbrouvrant = nbrouvrant + 1;
+                }
+                else {
+                    return false;
+                }   
+            } 
+            if (Regex.charAt(i) == ')') {
+                if (nbrouvrant == 0) {
+                    return false;
+                } else {
+                   nbrfermente=nbrfermente+1;
+                   if ( nbrfermente==nbrouvrant) {
+                    nbrouvrant = 0;  
+                    nbrfermente = 0;
+                   }
+                }
+            }
+        }
+        return true;
     }
 
     // cette methode suivante nous permetra de recupérer automatiquement l'alphabet
