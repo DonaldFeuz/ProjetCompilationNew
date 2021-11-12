@@ -26,19 +26,48 @@ public class ControlRegex {
     // cette methode suivante nous permetra de savoir si un regex est bien
     // parenthèser et envoyer un message d'erreur aux cas contraire
     public boolean VerifierQueLeRegexEstBienParentheser(String Regex) {
+        int nbrouvrant = 0;
+        int nbrfermente = 0;
+         
+        for (int i = 0; i < Regex.length(); i++) {
+            if (Regex.charAt(i) == '(') {
+                nbrouvrant = nbrouvrant + 1;
+            }  
 
-        return false;
+            if (Regex.charAt(i) == ')') {
+                if (nbrouvrant == 0) {
+                    return false;
+                } else {
+                    nbrfermente = nbrfermente + 1;
+                    
+                }
+            }
+        }
+        if (nbrfermente != nbrouvrant ) {
+          return false;  
+        }
+        return true;
     }
 
     // cette methode suivante nous permetra de recupérer automatiquement l'alphabet
     // du regex entrer par l'utilisateur .
-    public String[] RecupérationAlphabetDuRegex(String Regex) {
+    public String RecupérationAlphabetDuRegex(String Regex) {
+        String resut = new String();
+        for (int i = 0; i < Regex.length(); i++) {
+            if ((Regex.charAt(i) >= 'A' && Regex.charAt(i) <= 'Z') || (Regex.charAt(i) >= 'a' && Regex.charAt(i) <= 'z')
+                    || (Regex.charAt(i) >= '0' && Regex.charAt(i) <= '9')) {
+                if (!resut.contains(Character.toString(Regex.charAt(i)))) {
+                    resut = resut + " " + Character.toString(Regex.charAt(i));
 
-        return null;
+                }
+            }
+
+        }
+        return resut;
     }
 
     // cette methode suivante nous permetra de transformer un regex infixé sous
-    // forme postfixé.
+    // forme postfixé.C
     public String TransformeUnRegexSousFormePostfixe(String Regex) {
 
         return null;

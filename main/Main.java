@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package main;
+
+import ControlRegex.ControlRegex;
 
 /**
  *
@@ -12,21 +15,23 @@ package main;
 public class Main {
 
     /**
-     * cette classe vas nous permettre de recuperer une regex et d'éffectuer toute les taches qui sont associés 
-     * tout commence ici!!! beaucoup de courage et de concentration à tous !!!!
+     * cette classe vas nous permettre de recuperer une regex et d'éffectuer toute
+     * les taches qui sont associés tout commence ici!!! beaucoup de courage et de
+     * concentration à tous !!!!
+     * 
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       
-        System.out.println("ca deja commencer !!");
+        ControlRegex rex = new ControlRegex();
+        System.out.println(rex.VerifierQueLeRegexEstBienParentheser("(((a8b)+bs))"));
+
         // VerifierQueLeRegexEstBienFormer(Regex);
         // VerifierQueLeRegexEstBienParentheser(Regex);
         // RecupérationAlphabetDuRegex(Regex);
         // TransformeUnRegexSousFormePostfixe();
         // ConstruireTransitionAFN();
         // ConstruireTransitionAFD();
-         
+
     }
-    
-    
+
 }
