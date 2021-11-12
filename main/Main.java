@@ -25,6 +25,9 @@ public class Main {
         ControlRegex rex = new ControlRegex();
         System.out.println(rex.VerifierQueLeRegexEstBienParentheser("(((a8b)+bs))"));
 
+        ControlRegex c= new ControlRegex();
+
+        System.out.println(c.VerifierQueLeRegexEstBienFormer("00m+8a+m+a\n"));
         // VerifierQueLeRegexEstBienFormer(Regex);
         // VerifierQueLeRegexEstBienParentheser(Regex);
         // RecupérationAlphabetDuRegex(Regex);
