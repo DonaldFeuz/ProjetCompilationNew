@@ -33,21 +33,13 @@ public class TransitionAFN {
                                 // methode à été appeller
         TransitionAFN TransitionAFN = new TransitionAFN();
         TransitionAFN.SetValeur(Valeur);
-        // tests
-        System.out.println(TransitionAFN);
-        System.out.println(Valeur);
+       
 
         ArrayList<TransitionAFN> ListTansitionAFN = new ArrayList<TransitionAFN>();
 
         ListTansitionAFN.add(TransitionAFN);
         AutomateAFN AutomateAFN = new AutomateAFN(EtatInitiale, EtatFinaux, Etats, ListTansitionAFN);
-        // tests
-        for (TransitionAFN transitionAFN2 : AutomateAFN.GetTransitions()) {
-
-            System.out.println(transitionAFN2);
-
-        }
-
+        
         return AutomateAFN;
     };
 
