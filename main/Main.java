@@ -22,8 +22,8 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-          ControlRegex rex = new ControlRegex();
-        System.out.println(rex.VerifierQueLeRegexEstBienParentheser("((((0))))((())))"));
+        ControlRegex rex = new ControlRegex();
+        System.out.println(rex.VerifierQueLeRegexEstBienParentheser("(((a8b)+bs))"));
 
         // VerifierQueLeRegexEstBienFormer(Regex);
         // VerifierQueLeRegexEstBienParentheser(Regex);
