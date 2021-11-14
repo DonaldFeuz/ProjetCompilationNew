@@ -33,13 +33,12 @@ public class TransitionAFN {
                                 // methode à été appeller
         TransitionAFN TransitionAFN = new TransitionAFN();
         TransitionAFN.SetValeur(Valeur);
-       
 
         ArrayList<TransitionAFN> ListTansitionAFN = new ArrayList<TransitionAFN>();
 
         ListTansitionAFN.add(TransitionAFN);
         AutomateAFN AutomateAFN = new AutomateAFN(EtatInitiale, EtatFinaux, Etats, ListTansitionAFN);
-        
+
         return AutomateAFN;
     };
 
@@ -63,6 +62,8 @@ public class TransitionAFN {
             for (i = k; i <= Automate1.GetEtats().size(); i++) {
 
                 etat.SetEtat(i);
+                System.out.println("attention je numérote "+i);
+
                 Etats.add(etat);
                 i = Automate1.GetEtats().size();
             }
@@ -77,11 +78,9 @@ public class TransitionAFN {
                 etat.SetEtat(j);
                 Etats.add(etat);
                 m = Automate2.GetEtats().size();
-
             }
             l++;
             n++;
-
         }
         ;
 
@@ -219,30 +218,37 @@ public class TransitionAFN {
         AutomateAFN automateafn1;
         AutomateAFN automateafn2;
         AutomateAFN automateafn3;
+        AutomateAFN automateafn4;
+        AutomateAFN automateafn5;
+        AutomateAFN automateafn6;
+        AutomateAFN automateafn7;
         TransitionAFN t1 = new TransitionAFN();
         automateafn1 = t1.construireTransitionAFNSinple("a");
         automateafn2 = t1.construireTransitionAFNSinple("b");
+        automateafn6 = t1.construireTransitionAFNSinple("c");
+        automateafn7 = t1.construireTransitionAFNSinple("d");
         automateafn3 = t1.ConstruireTransitionAFNAddition(automateafn1, automateafn2);
+        automateafn4 = t1.ConstruireTransitionAFNAddition(automateafn6, automateafn7);
+        automateafn5 = t1.ConstruireTransitionAFNAddition(automateafn3, automateafn4);
         System.out.println("----------je comence ici------------");
 
-
         System.out.println("----------l'etat initiale est------------");
-        System.out.println(automateafn3.GetEtat());
+        System.out.println(automateafn5.GetEtat());
 
         System.out.println("----------les etats finaux sont------------");
-        for (Etat etat : automateafn3.GetEtatFinales()) {
+        for (Etat etat : automateafn5.GetEtatFinales()) {
             System.out.println(etat);
         }
 
         System.out.println("----------la liste des états est ------------");
-        for (Etat etat : automateafn3.GetEtats()) {
+        for (Etat etat : automateafn5.GetEtats()) {
             System.out.println(etat);
-            System.out.println("avec pour status"+etat.GetStatus());
+            System.out.println("avec pour status" + etat.GetStatus());
 
         }
         System.out.println("----------la liste des transitions est  ------------");
 
-        for (TransitionAFN transitionAFN : automateafn3.GetTransitions()) {
+        for (TransitionAFN transitionAFN : automateafn5.GetTransitions()) {
             System.out.println(transitionAFN);
         }
 
