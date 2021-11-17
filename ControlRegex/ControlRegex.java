@@ -26,7 +26,7 @@ public class ControlRegex {
 
     // cette methode verifie si un charactere est un operateur ou pas
     public boolean VerifierQueLeCharactereEstUnOperateurOuUnPas(char Operateur) {
-        if (Operateur == '+' || Operateur == '*' || Operateur == '|')
+        if (Operateur == '+' ||Operateur == '|')
             return true;
         return false;
     }
@@ -42,7 +42,7 @@ public class ControlRegex {
                     || (Regex.charAt(i) == '0' || Regex.charAt(i) == '1' || Regex.charAt(i) == '2'
                             || Regex.charAt(i) == '3' || Regex.charAt(i) == '4' || Regex.charAt(i) == '5'
                             || Regex.charAt(i) == '6' || Regex.charAt(i) == '7' || Regex.charAt(i) == '8'
-                            || Regex.charAt(i) == '9'))) {
+                            || Regex.charAt(i) == '9') || Regex.charAt(i) == '(' || Regex.charAt(i) == ')')) {
                 cpt++;
             }
         }
@@ -55,27 +55,32 @@ public class ControlRegex {
     // envoyer un message d'erreur aux cas contraire
     public boolean VerifierQueLeRegexEstBienFormer(String Regex) {
         int cpt = 0;
-        if (ContientLettreEtOperateur(Regex) == true) {
-            if (VerifierQueLeCharactereEstUnOperateurOuUnPas(Regex.charAt(Regex.length() - 1)) == true
-                    || VerifierQueLeCharactereEstUnOperateurOuUnPas(Regex.charAt(0)) == true) {
-                return false;
-            } else {
-                for (int i = 1; i < Regex.length(); i++) {
-                    if (VerifierQueLeCharactereEstUnOperateurOuUnPas(Regex.charAt(i - 1)) == true
-                            && VerifierQueLeCharactereEstUnOperateurOuUnPas(Regex.charAt(i)) == true) {
-                        cpt++;
+        if(VerifierQueLeRegexEstBienParentheser(Regex)==true){
+            if (ContientLettreEtOperateur(Regex) == true) {
+                if (VerifierQueLeCharactereEstUnOperateurOuUnPas(Regex.charAt(Regex.length() - 1)) == true
+                        || VerifierQueLeCharactereEstUnOperateurOuUnPas(Regex.charAt(0)) == true || Regex.charAt(0)=='*') {
+                    return false;
+                } else {
+                    for (int i = 1; i < Regex.length(); i++) {
+                        if ((VerifierQueLeCharactereEstUnOperateurOuUnPas(Regex.charAt(i - 1)) == true
+                                && VerifierQueLeCharactereEstUnOperateurOuUnPas(Regex.charAt(i)) == true) || (Regex.charAt(i)=='*' && Regex.charAt(i - 1)=='*') || (Regex.charAt(i)=='*' && VerifierQueLeCharactereEstUnOperateurOuUnPas(Regex.charAt(i-1)) == true)) {
+                            cpt++;
+                        }
+                    }
+                    if (cpt == 0) {
+                        return true;
+                    } else {
+                        return false;
                     }
                 }
-                if (cpt == 0) {
-                    return true;
-                } else {
-                    return false;
-                }
+    
+            } else {
+                return false;
             }
-
-        } else {
+        }else{
             return false;
         }
+        
 
     }
 
