@@ -193,8 +193,8 @@ public class ControlRegex {
         return false;
     }
 
-    public String TransformeUnRegexSousFormePostfixe(String Regex) {
-
+    public String TransformeUnRegexSousFormePostfixe(String regex) {
+        String Regex=transformerEspaceEnPoint(regex);
         int k = 0;
         Stack<String> pile = new Stack<>();
         char[] ExpressPostfixe = new char[Regex.length()];
