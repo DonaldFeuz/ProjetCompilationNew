@@ -17,7 +17,7 @@ public class ControlRegex {
     private String[] AlphabetRegex;
     private String[] Operateur;
 
-   // cette methode verifie si un charactere est une lettre de l'alphabet ou pas
+   // cette methode verwifie si un charactere est une lettre de l'alphabet ou pas
    // public boolean VerifierQueLeCharactereEstUneLettreOuUnPas(char lettre) {
    //     if ((lettre >= 'A' && lettre <= 'Z') || (lettre >= 'a' && lettre <= 'z'))
    //         return true;
@@ -134,5 +134,22 @@ public class ControlRegex {
     public String ConstruireTransitionAFN(String Regex) {
 
         return null;
+    }
+
+    //cette methode permet de verifier si, pour un mot donné, chaque caractere appartient à l'alphabet.
+    public boolean MotAppartenirAlphabet(String Alphabet, String Mot) {
+        int cpt=0;
+        for (int i = 0; i < Mot.length(); i++) {
+            if (Alphabet.contains(String.valueOf(Mot.charAt(i)))==false) {
+                cpt++;
+            }
+            
+        }
+
+        if (cpt==0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
