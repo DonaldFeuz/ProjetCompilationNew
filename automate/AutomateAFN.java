@@ -21,10 +21,21 @@ public class AutomateAFN {
     public ArrayList<Etat> GetEtats() {
         return Etats;
     }
+    
+    public Etat GetEtat() {
+        return EtatInitiale;
+    }
 
-    public ArrayList<TransitionAFN> GetTransition() {
+    public ArrayList<Etat> GetEtatFinales() {
+        return EtatFinales ;
+    }
+
+    public ArrayList<TransitionAFN> GetTransitions() {
         return  TransitionsAFN;
     }
+
+ 
+
     // public void SetEtats() {
 
     // for (Etat etat : Etats) {
