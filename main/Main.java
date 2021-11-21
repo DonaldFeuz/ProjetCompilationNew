@@ -6,6 +6,8 @@
 
 package main;
 
+import java.util.Stack;
+
 import ControlRegex.ControlRegex;
 
 /**
@@ -26,14 +28,15 @@ public class Main {
         //System.out.println(rex.VerifierQueLeRegexEstBienParentheser("(((a8b)+bs))"));
 
         ControlRegex c= new ControlRegex();
-
-        System.out.println(c.VerifierQueLeRegexEstBienFormer("((0)*0()m(+)8a+m+a)*"));
-        // VerifierQueLeRegexEstBienFormer(Regex);
+       // c.TransformeUnRegexSousFormePostfixe("+", " ", tab);
+        System.out.println(c.TransformeUnRegexSousFormePostfixe("a+a*.a+a"));
+        //System.out.println(c.VerifierQueLeRegexEstBienFormer("R(a+b)eg*e.x"));
         // VerifierQueLeRegexEstBienParentheser(Regex);
         // RecupérationAlphabetDuRegex(Regex);
         // TransformeUnRegexSousFormePostfixe();
         // ConstruireTransitionAFN();
         // ConstruireTransitionAFD();
+              
 
     }
 
