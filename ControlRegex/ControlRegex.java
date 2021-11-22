@@ -17,9 +17,9 @@ import java.util.Stack;
 public class ControlRegex {
 
     private String Regex;
-    private String[] AlphabetRegex;
-    private String[] Operateur;
     private int i = 0;
+    private String AlphabetRegex;
+    private String Operateur;
 
     // cette methode verifie si un charactere est une lettre de l'alphabet ou pas
     // public boolean VerifierQueLeCharactereEstUneLettreOuUnPas(char lettre) {
@@ -183,6 +183,7 @@ public class ControlRegex {
             }
 
         }
+    this.AlphabetRegex = resut;
         return resut;
     }
 
