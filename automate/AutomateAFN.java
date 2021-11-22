@@ -8,7 +8,8 @@ public class AutomateAFN {
     private ArrayList<Etat> EtatFinales;
     private ArrayList<Etat> Etats;
     private ArrayList<TransitionAFN> TransitionsAFN;
-
+  
+    public AutomateAFN(){}
     public AutomateAFN(Etat EtatInitiale, ArrayList<Etat> EtatFinales, ArrayList<Etat> Etats,
             ArrayList<TransitionAFN> TransitionsAFN) {
         this.EtatInitiale = EtatInitiale;
