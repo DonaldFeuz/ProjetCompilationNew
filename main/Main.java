@@ -29,7 +29,7 @@ public class Main {
 
         ControlRegex c= new ControlRegex();
        // c.TransformeUnRegexSousFormePostfixe("+", " ", tab);
-        System.out.println(c.TransformeUnRegexSousFormePostfixe("a+a*.a+a"));
+        System.out.println(c.TransformeUnRegexSousFormePostfixe("(aa)*(a+a)"));
         //System.out.println(c.VerifierQueLeRegexEstBienFormer("R(a+b)eg*e.x"));
         // VerifierQueLeRegexEstBienParentheser(Regex);
         // RecupérationAlphabetDuRegex(Regex);

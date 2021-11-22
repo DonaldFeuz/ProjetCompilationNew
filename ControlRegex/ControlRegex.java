@@ -193,121 +193,128 @@ public class ControlRegex {
         return false;
     }
 
-    public String TransformeUnRegexSousFormePostfixe(String regex) {
-        String Regex=transformerEspaceEnPoint(regex);
-        int k = 0;
-        Stack<String> pile = new Stack<>();
-        char[] ExpressPostfixe = new char[Regex.length()];
-        for (int i = 0; i < Regex.length(); i++) {
-            if (Regex.charAt(i) == '*' || Regex.charAt(i) == '(') {
-                pile.add(String.valueOf(Regex.charAt(i)));
-            } else if (Regex.charAt(i) == '+' || Regex.charAt(i) == '|') {
-                if (!pile.empty()) {
-                    if (pile.lastElement().equals("*") || pile.lastElement().equals(".")) {
-                        while (pile.lastElement().equals("*") || pile.lastElement().equals(".")) {
-                            String myString = pile.lastElement();
-                            char[] MyChars = myString.toCharArray();
-                            ExpressPostfixe[k] = MyChars[0];
-                            pile.pop();
-                            k++;
-                        }
-                    } else {
-                        pile.add(String.valueOf(Regex.charAt(i)));
-                    }
-                } else {
-                    pile.add(String.valueOf(Regex.charAt(i)));
-                }
-
-            } else if (Regex.charAt(i) == '.') {
-                if (!pile.empty()) {
-                    if (pile.lastElement().equals("*")) {
-                        while (pile.lastElement().equals("*")) {
-                            String myString = pile.lastElement();
-                            char[] MyChars = myString.toCharArray();
-                            ExpressPostfixe[k] = MyChars[0];
-                            pile.pop();
-                            k++;
-                        }
-                    } else {
-                        pile.add(String.valueOf(Regex.charAt(i)));
-                    }
-                } else {
-                    pile.add(String.valueOf(Regex.charAt(i)));
-                }
-
-            } else if (Regex.charAt(i) == ')') {
-                while (!pile.lastElement().equals("(")) {
-                    String myString = pile.lastElement();
-                    char[] MyChars = myString.toCharArray();
-                    ExpressPostfixe[k] = MyChars[0];
-                    pile.pop();
-                    k++;
-                }
-            } else {
-                ExpressPostfixe[k] = Regex.charAt(i);
-                k++;
-            }
-        }
-
-        for (int i = k; i < Regex.length(); i++) {
-            if (!pile.empty()) {
-                if (pile.lastElement().equals("(")) {
-                    if (pile.empty())
-                        break;
-                    pile.pop();
-                } else {
-                    if (pile.empty())
-                        break;
-                    String myString = pile.lastElement();
-                    char[] MyChars = myString.toCharArray();
-                    ExpressPostfixe[k] = MyChars[0];
-                    pile.pop();
-                    k++;
-                }
-
-            }
-
-        }
-
-        return String.valueOf(ExpressPostfixe);
-    }
-
-    public String TransformeUnRegexSousFormePostfixes(String Regex) {
-        char[] a = Regex.toCharArray();
-        int n = a.length;
-        Stack<String> pile = new Stack<>();
-        String res = " ";
-        for (int i = 0; i < a.length; i++) {
-            if (a[i] == ')') {
-                res = res + pile.lastElement() + " ";
-                pile.pop();
-            }
-            if (a[i] == '(') {
-
-            }
-            if (a[i] == ' ') {
-
-            }
-            if ((a[i] == '+') || (a[i] == '|') || (a[i] == '*')) {
-                pile.add(String.valueOf(a[i]));
-            }
-            if ((a[i] >= '0') && (a[i] <= '9')) {
-                while ((a[i] >= '0') && (a[i] <= '9')) {
-                    res = res + a[i++];
-                }
-                i--;
-                res = res + ' ';
-            }
-        }
-        return String.valueOf(res);
-    }
-
-    // cette methode suivante nous permetra de construire l'ensemble des transitions
-    // du regex.
+    // cette methode permet de contruire l'AFN a partir dun regex
     public String ConstruireTransitionAFN(String Regex) {
         return null;
     }
+
+    // cette methode permet de choisir l'operateur
+    public int Prec(char ch) {
+        switch (ch) {
+        case '+':
+        case '|':
+            return 1;
+
+        case '.':
+        case '/':
+            return 2;
+
+        case '*':
+            return 3;
+        }
+        return -1;
+    }
+
+    // cette methode transforme une expression en infix sous forme postfixe
+    public String TransformeUnRegexSousFormePostfixe(String Exp) {
+        if (VerifierQueLeRegexEstBienFormer(Exp)) {
+            String exp = transformerEspaceEnPoint(Exp);
+            String result = new String("");
+
+            Stack<Character> stack = new Stack<>();
+
+            for (int i = 0; i < exp.length(); ++i) {
+                char c = exp.charAt(i);
+
+                if (Character.isLetterOrDigit(c))
+                    result += c;
+
+                else if (c == '(')
+                    stack.push(c);
+
+                else if (c == ')') {
+                    while (!stack.isEmpty() && stack.peek() != '(')
+                        result += stack.pop();
+
+                    stack.pop();
+                } else {
+                    while (!stack.isEmpty() && Prec(c) <= Prec(stack.peek())) {
+
+                        result += stack.pop();
+                    }
+                    stack.push(c);
+                }
+
+            }
+
+            while (!stack.isEmpty()) {
+                if (stack.peek() == '(')
+                    return "Invalid Expression";
+                result += stack.pop();
+            }
+            return result;
+        } else {
+            System.out.println("Regex mal former");
+            return null;
+        }
+
+    }
+
 }
+
+/*
+ * public String TransformeUnRegexSousFormePostfixe(String regex) { String
+ * Regex=transformerEspaceEnPoint(regex); int k = 0; Stack<String> pile = new
+ * Stack<>(); char[] ExpressPostfixe = new char[Regex.length()]; for (int i = 0;
+ * i < Regex.length(); i++) { if (Regex.charAt(i) == '*' || Regex.charAt(i) ==
+ * '(') { pile.add(String.valueOf(Regex.charAt(i))); } else if (Regex.charAt(i)
+ * == '+' || Regex.charAt(i) == '|') { if (!pile.empty()) { if
+ * (pile.lastElement().equals("*") || pile.lastElement().equals(".")) { while
+ * (pile.lastElement().equals("*") || pile.lastElement().equals(".")) { String
+ * myString = pile.lastElement(); char[] MyChars = myString.toCharArray();
+ * ExpressPostfixe[k] = MyChars[0]; pile.pop(); k++; } } else {
+ * pile.add(String.valueOf(Regex.charAt(i))); } } else {
+ * pile.add(String.valueOf(Regex.charAt(i))); }
+ * 
+ * } else if (Regex.charAt(i) == '.') { if (!pile.empty()) { if
+ * (pile.lastElement().equals("*")) { while (pile.lastElement().equals("*")) {
+ * String myString = pile.lastElement(); char[] MyChars =
+ * myString.toCharArray(); ExpressPostfixe[k] = MyChars[0]; pile.pop(); k++; } }
+ * else { pile.add(String.valueOf(Regex.charAt(i))); } } else {
+ * pile.add(String.valueOf(Regex.charAt(i))); }
+ * 
+ * } else if (Regex.charAt(i) == ')') { while (!pile.lastElement().equals("("))
+ * { String myString = pile.lastElement(); char[] MyChars =
+ * myString.toCharArray(); ExpressPostfixe[k] = MyChars[0]; pile.pop(); k++; } }
+ * else { ExpressPostfixe[k] = Regex.charAt(i); k++; } }
+ * 
+ * for (int i = k; i < Regex.length(); i++) { if (!pile.empty()) { if
+ * (pile.lastElement().equals("(")) { if (pile.empty()) break; pile.pop(); }
+ * else { if (pile.empty()) break; String myString = pile.lastElement(); char[]
+ * MyChars = myString.toCharArray(); ExpressPostfixe[k] = MyChars[0];
+ * pile.pop(); k++; }
+ * 
+ * }
+ * 
+ * }
+ * 
+ * return String.valueOf(ExpressPostfixe); }
+ * 
+ * public String TransformeUnRegexSousFormePostfixes(String Regex) { char[] a =
+ * Regex.toCharArray(); int n = a.length; Stack<String> pile = new Stack<>();
+ * String res = " "; for (int i = 0; i < a.length; i++) { if (a[i] == ')') { res
+ * = res + pile.lastElement() + " "; pile.pop(); } if (a[i] == '(') {
+ * 
+ * } if (a[i] == ' ') {
+ * 
+ * } if ((a[i] == '+') || (a[i] == '|') || (a[i] == '*')) {
+ * pile.add(String.valueOf(a[i])); } if ((a[i] >= '0') && (a[i] <= '9')) { while
+ * ((a[i] >= '0') && (a[i] <= '9')) { res = res + a[i++]; } i--; res = res + '
+ * '; } } return String.valueOf(res); }
+ */
+
+// cette methode suivante nous permetra de construire l'ensemble des transitions
+// du regex.
 
 // renvoyer une chaine de caractere prive du dernier elements
 /*
