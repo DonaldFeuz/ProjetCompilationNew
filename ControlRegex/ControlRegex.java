@@ -137,20 +137,5 @@ public class ControlRegex {
         return null;
     }
 
-    //cette methode permet de verifier si, pour un mot donné, chaque caractere appartient à l'alphabet.
-    public boolean MotAppartenirAlphabet(String Alphabet, String Mot) {
-        int cpt=0;
-        for (int i = 0; i < Mot.length(); i++) {
-            if (Alphabet.contains(String.valueOf(Mot.charAt(i)))==false) {
-                cpt++;
-            }
-            
-        }
-
-        if (cpt==0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+   
 }

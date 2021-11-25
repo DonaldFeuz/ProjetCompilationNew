@@ -13,6 +13,7 @@ import ControlRegex.ControlRegex;
 import automate.AutomateAFN;
 import automate.Etat;
 import automate.TransitionAFN;
+import verification_mot.ControlMot;
 
 /**
  *
@@ -81,7 +82,7 @@ public class Main {
         }
 
 
-         ControlRegex c = new ControlRegex();
+         ControlMot c = new ControlMot();
 
         // System.out.println(c.VerifierQueLeRegexEstBienFormer("gm+a\n"));
         System.out.println(c.MotAppartenirAlphabet("bbaac","cad"));

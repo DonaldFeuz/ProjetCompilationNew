@@ -2,7 +2,7 @@ package automate;
 
 import java.util.ArrayList;
 
-public class AutomateAFD {
+public class AutomateAFD  {
 
     private Etat EtatInitiale;
     private ArrayList<Etat> EtatFinales;

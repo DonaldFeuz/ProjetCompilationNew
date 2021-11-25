@@ -1,11 +1,18 @@
 package automate;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.ArrayList;
 
 //cette classe noous permetras d'effectuer les opération liées aux transition de l'AFN
 public class TransitionAFN {
     private HashMap<Etat, HashMap<ArrayList<Etat>, String>> Valeur = new HashMap<Etat, HashMap<ArrayList<Etat>, String>>();
+    // private HashMap<Etat, HashMap<String,ArrayList<Etat> >> Valeur = new
+    // HashMap<Etat, HashMap<String,ArrayList<Etat> >>();
+    // public int GetTransitionkey() {
+    // this.Valeur.keySet().;
+    // return 0;
+    // }
 
     public AutomateAFN construireTransitionAFNSinple(String Caractere) // permet de construire les transitions pour un
                                                                        // regex a
@@ -282,8 +289,6 @@ public class TransitionAFN {
             }
         };
 
- 
-
         TransitionAFN TransitionAFN1 = new TransitionAFN();
         TransitionAFN TransitionAFN2 = new TransitionAFN();
 
@@ -325,9 +330,12 @@ public class TransitionAFN {
         // automateafn2 = t1.construireTransitionAFNSinple("b");
         // automateafn6 = t1.construireTransitionAFNSinple("c");
         // automateafn7 = t1.construireTransitionAFNSinple("d");
-        // automateafn3 = t1.ConstruireTransitionAFNAddition(automateafn1, automateafn2);
-        // automateafn4 = t1.ConstruireTransitionAFNAddition(automateafn6, automateafn7);
-        // automateafn5 = t1.ConstruireTransitionAFNAddition(automateafn3, automateafn4);
+        // automateafn3 = t1.ConstruireTransitionAFNAddition(automateafn1,
+        // automateafn2);
+        // automateafn4 = t1.ConstruireTransitionAFNAddition(automateafn6,
+        // automateafn7);
+        // automateafn5 = t1.ConstruireTransitionAFNAddition(automateafn3,
+        // automateafn4);
         automateafn5 = t1.ConstruireTransitionAFNEtoile(automateafn1);
         System.out.println("----------je comence ici------------");
 
@@ -350,6 +358,16 @@ public class TransitionAFN {
         for (TransitionAFN transitionAFN : automateafn5.GetTransitions()) {
             System.out.println(transitionAFN);
         }
+        List<TransitionAFN> transitionAFN = automateafn5.GetTransitions();
+        List<Etat> listeE = automateafn5.GetEtatTransitions(transitionAFN, 1, "£");
+        if (listeE != null) {
+            for (Etat etat : listeE) {
+                System.out.println(etat);
+
+            }
+        } 
+        else System.out.println("pas d'etat acessible avec cette etiquette");
+            
 
     }
 
