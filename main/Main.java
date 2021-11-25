@@ -7,6 +7,7 @@
 package main;
 
 import java.util.Scanner;
+
 import java.util.Stack;
 
 import ControlRegex.ControlRegex;
@@ -41,7 +42,7 @@ public class Main {
 
         ControlRegex c= new ControlRegex();
        // c.TransformeUnRegexSousFormePostfixe("+", " ", tab);
-        System.out.println(c.TransformeUnRegexSousFormePostfixe("a+a*.a+a"));
+        System.out.println(c.TransformeUnRegexSousFormePostfixe("(aa)*(a+a)"));
         //System.out.println(c.VerifierQueLeRegexEstBienFormer("R(a+b)eg*e.x"));
 
         if (rex.VerifierQueLeRegexEstBienParentheser(Regex)) {
@@ -97,6 +98,7 @@ public class Main {
         // ConstruireTransitionAFN();
         // ConstruireTransitionAFD();
               
+
         // System.out.println("voulez vous entrer une autre expression???");
         // Scanner sc = new Scanner(System.in);
         // compt = sc.next();
