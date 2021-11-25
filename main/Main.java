@@ -13,6 +13,7 @@ import ControlRegex.ControlRegex;
 import automate.AutomateAFN;
 import automate.Etat;
 import automate.TransitionAFN;
+import verification_mot.ControlMot;
 
 /**
  *
@@ -37,6 +38,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         Regex = sc.next();
         ControlRegex rex = new ControlRegex();
+        //System.out.println(rex.VerifierQueLeRegexEstBienParentheser("(((a8b)+bs))"));
 
         if (rex.VerifierQueLeRegexEstBienParentheser(Regex)) {
             // System.out.println(rex.VerifierQueLeRegexEstBienParentheser(Regex));
@@ -80,9 +82,10 @@ public class Main {
         }
 
 
-        // ControlRegex c = new ControlRegex();
+         ControlMot c = new ControlMot();
 
         // System.out.println(c.VerifierQueLeRegexEstBienFormer("gm+a\n"));
+        System.out.println(c.MotAppartenirAlphabet("bbaac","cad"));
         // VerifierQueLeRegexEstBienFormer(Regex);
         // VerifierQueLeRegexEstBienParentheser(Regex);
         // RecupérationAlphabetDuRegex(Regex);

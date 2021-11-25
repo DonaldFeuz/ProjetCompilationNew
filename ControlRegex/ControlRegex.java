@@ -17,7 +17,7 @@ public class ControlRegex {
     private String AlphabetRegex;
     private String Operateur;
 
-   // cette methode verifie si un charactere est une lettre de l'alphabet ou pas
+   // cette methode verwifie si un charactere est une lettre de l'alphabet ou pas
    // public boolean VerifierQueLeCharactereEstUneLettreOuUnPas(char lettre) {
    //     if ((lettre >= 'A' && lettre <= 'Z') || (lettre >= 'a' && lettre <= 'z'))
    //         return true;
@@ -136,4 +136,6 @@ public class ControlRegex {
 
         return null;
     }
+
+   
 }
