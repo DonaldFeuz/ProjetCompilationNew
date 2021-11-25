@@ -7,6 +7,7 @@
 package main;
 
 import java.util.Scanner;
+
 import java.util.Stack;
 
 import ControlRegex.ControlRegex;
@@ -39,6 +40,11 @@ public class Main {
         Regex = sc.next();
         ControlRegex rex = new ControlRegex();
         //System.out.println(rex.VerifierQueLeRegexEstBienParentheser("(((a8b)+bs))"));
+
+        ControlRegex c= new ControlRegex();
+       // c.TransformeUnRegexSousFormePostfixe("+", " ", tab);
+        System.out.println(c.TransformeUnRegexSousFormePostfixe("(aa)*(a+a)"));
+        //System.out.println(c.VerifierQueLeRegexEstBienFormer("R(a+b)eg*e.x"));
 
         if (rex.VerifierQueLeRegexEstBienParentheser(Regex)) {
             // System.out.println(rex.VerifierQueLeRegexEstBienParentheser(Regex));
@@ -80,18 +86,21 @@ public class Main {
         for (TransitionAFN item : pile.firstElement().GetTransitions()) {
             System.out.println(item);
         }
+    
 
 
-         ControlMot c = new ControlMot();
+         ControlMot d = new ControlMot();
 
         // System.out.println(c.VerifierQueLeRegexEstBienFormer("gm+a\n"));
-        System.out.println(c.MotAppartenirAlphabet("bbaac","cad"));
+        System.out.println(d.MotAppartenirAlphabet("bbaac","cad"));
         // VerifierQueLeRegexEstBienFormer(Regex);
         // VerifierQueLeRegexEstBienParentheser(Regex);
         // RecupérationAlphabetDuRegex(Regex);
         // TransformeUnRegexSousFormePostfixe();
         // ConstruireTransitionAFN();
         // ConstruireTransitionAFD();
+              
+
         // System.out.println("voulez vous entrer une autre expression???");
         // Scanner sc = new Scanner(System.in);
         // compt = sc.next();
