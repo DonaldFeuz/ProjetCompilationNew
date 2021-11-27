@@ -23,11 +23,11 @@ public class Main {
      */
     public static void main(String[] args) {
         ControlRegex rex = new ControlRegex();
-        System.out.println(rex.VerifierQueLeRegexEstBienParentheser("(((a8b)+bs))"));
+        System.out.println(rex.VerifierQueLeRegexEstBienParentheser(")))a8b(+bs(("));
 
         ControlRegex c= new ControlRegex();
 
-        System.out.println(c.VerifierQueLeRegexEstBienFormer("00m+8a+m+a\n"));
+        System.out.println(c.VerifierQueLeRegexEstBienFormer("00m+(8a)+m+a"));
         // VerifierQueLeRegexEstBienFormer(Regex);
         // VerifierQueLeRegexEstBienParentheser(Regex);
         // RecupérationAlphabetDuRegex(Regex);
