@@ -20,6 +20,7 @@ public class Etat {
     public String toString() {
         return ("" + this.Etat);
     }
+    
 
     public void SetEtat(int etat) {
         this.Etat = etat;

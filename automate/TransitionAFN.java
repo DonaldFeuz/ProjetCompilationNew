@@ -1,11 +1,18 @@
 package automate;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.ArrayList;
 
 //cette classe noous permetras d'effectuer les opération liées aux transition de l'AFN
 public class TransitionAFN {
     private HashMap<Etat, HashMap<ArrayList<Etat>, String>> Valeur = new HashMap<Etat, HashMap<ArrayList<Etat>, String>>();
+    // private HashMap<Etat, HashMap<String,ArrayList<Etat> >> Valeur = new
+    // HashMap<Etat, HashMap<String,ArrayList<Etat> >>();
+    // public int GetTransitionkey() {
+    // this.Valeur.keySet().;
+    // return 0;
+    // }
 
     public AutomateAFN construireTransitionAFNSinple(String Caractere) // permet de construire les transitions pour un
                                                                        // regex a
@@ -62,7 +69,10 @@ public class TransitionAFN {
             for (i = k; i <= Automate1.GetEtats().size(); i++) {
 
                 etat.SetEtat(i);
+<<<<<<< HEAD
                 System.out.println("attention je numérote " + i);
+=======
+>>>>>>> 1d4d2ee68db25259ca9bd613de2f51178062b3e5
 
                 Etats.add(etat);
                 i = Automate1.GetEtats().size();
@@ -265,6 +275,103 @@ TransitionAFN TransitionAFN1 = new TransitionAFN();
         return ("" + this.Valeur);
     }
 
+    public AutomateAFN ConstruireTransitionAFNEtoile(AutomateAFN automateAFN)
+
+    {
+        int i = 1;
+        Etat EtatInitiale = new Etat(0, Status.INITIALE);
+        Etat EtatFinal = new Etat(automateAFN.GetEtats().size() + 1, Status.FINAL);
+        ArrayList<Etat> EtatFinaux = new ArrayList<>();
+        EtatFinaux.add(EtatFinal);
+        ArrayList<Etat> Etats = new ArrayList<>();
+        Etats.add(EtatInitiale);
+
+        ArrayList<Etat> EtatsautomateAFN = automateAFN.GetEtats();
+
+        for (Etat etat : EtatsautomateAFN) {
+
+            etat.SetEtat(i);
+
+            Etats.add(etat);
+
+            i++;
+
+        }
+        Etats.add(EtatFinal);
+
+        Etat EtatInitialeAutomateAFN = new Etat();
+        Etat EtatFinalAutomateAFN = new Etat();
+
+        for (Etat etat : EtatsautomateAFN) {
+            if (etat.GetStatus() == Status.INITIALE) {
+                EtatInitialeAutomateAFN = etat;
+            }
+        }
+
+        for (Etat etat : EtatsautomateAFN) {
+            if (etat.GetStatus() == Status.FINAL) {
+                EtatFinalAutomateAFN = etat;
+            }
+        }
+
+        ArrayList<Etat> EtatsSuiventNouvelleTransition1 = new ArrayList<>();
+        ArrayList<Etat> EtatsSuiventNouvelleTransition2 = new ArrayList<>();
+
+        EtatsSuiventNouvelleTransition1.add(EtatInitialeAutomateAFN);
+        EtatsSuiventNouvelleTransition1.add(EtatFinal);
+        EtatsSuiventNouvelleTransition2.add(EtatInitialeAutomateAFN);
+        EtatsSuiventNouvelleTransition2.add(EtatFinal);
+
+        Etat EtatAventNouvelleTransition2;
+
+        EtatAventNouvelleTransition2 = EtatFinalAutomateAFN;
+
+        HashMap<Etat, HashMap<ArrayList<Etat>, String>> NouvelleValeurTransition1 = new HashMap<Etat, HashMap<ArrayList<Etat>, String>>() {
+            {
+                put(EtatInitiale, new HashMap<ArrayList<Etat>, String>() {
+                    {
+                        put(EtatsSuiventNouvelleTransition1, "£");
+                    }
+                });
+            }
+        };
+
+        HashMap<Etat, HashMap<ArrayList<Etat>, String>> NouvelleValeurTransition2 = new HashMap<Etat, HashMap<ArrayList<Etat>, String>>() {
+            {
+                put(EtatAventNouvelleTransition2, new HashMap<ArrayList<Etat>, String>() {
+                    {
+                        put(EtatsSuiventNouvelleTransition2, "£");
+                    }
+                });
+            }
+        };
+
+        TransitionAFN TransitionAFN1 = new TransitionAFN();
+        TransitionAFN TransitionAFN2 = new TransitionAFN();
+
+        TransitionAFN1.SetValeur(NouvelleValeurTransition1);
+        TransitionAFN2.SetValeur(NouvelleValeurTransition2);
+
+        ArrayList<TransitionAFN> ListTansitionAFN = new ArrayList<TransitionAFN>();
+
+        ListTansitionAFN.add(TransitionAFN1);
+
+        for (TransitionAFN transitionAFN : automateAFN.GetTransitions()) {
+            ListTansitionAFN.add(transitionAFN);
+        }
+
+        ListTansitionAFN.add(TransitionAFN2);
+
+        for (Etat etat : automateAFN.GetEtats()) {
+            etat.SetStatus(Status.PASSAGE);
+
+        }
+
+        AutomateAFN automateResultat = new AutomateAFN(EtatInitiale, EtatFinaux, Etats, ListTansitionAFN);
+
+        return automateResultat;
+    }
+
     public static void main(String[] args) {
 
         System.out.println("ca deja commencer !!");
@@ -276,6 +383,7 @@ TransitionAFN TransitionAFN1 = new TransitionAFN();
         AutomateAFN automateafn6;
         AutomateAFN automateafn7;
         TransitionAFN t1 = new TransitionAFN();
+<<<<<<< HEAD
         automateafn1 = t1.construireTransitionAFNSinple("a");
         automateafn2 = t1.construireTransitionAFNSinple("b");
         automateafn6 = t1.construireTransitionAFNSinple("c");
@@ -286,6 +394,19 @@ TransitionAFN TransitionAFN1 = new TransitionAFN();
         Etat test=new Etat(1,Status.PASSAGE);
         ArrayList<Etat> list= new   ArrayList<Etat>();
         ArrayList<Etat> list2=automateafn5.fermeture(test, list);
+=======
+        automateafn1 = t1.construireTransitionAFNSinple("r");
+        // automateafn2 = t1.construireTransitionAFNSinple("b");
+        // automateafn6 = t1.construireTransitionAFNSinple("c");
+        // automateafn7 = t1.construireTransitionAFNSinple("d");
+        // automateafn3 = t1.ConstruireTransitionAFNAddition(automateafn1,
+        // automateafn2);
+        // automateafn4 = t1.ConstruireTransitionAFNAddition(automateafn6,
+        // automateafn7);
+        // automateafn5 = t1.ConstruireTransitionAFNAddition(automateafn3,
+        // automateafn4);
+        automateafn5 = t1.ConstruireTransitionAFNEtoile(automateafn1);
+>>>>>>> 1d4d2ee68db25259ca9bd613de2f51178062b3e5
         System.out.println("----------je comence ici------------");
 
         System.out.println("----------l'etat initiale est------------");
@@ -307,6 +428,16 @@ TransitionAFN TransitionAFN1 = new TransitionAFN();
         for (TransitionAFN transitionAFN : automateafn5.GetTransitions()) {
             System.out.println(transitionAFN);
         }
+        List<TransitionAFN> transitionAFN = automateafn5.GetTransitions();
+        List<Etat> listeE = automateafn5.GetEtatTransitions(transitionAFN, 1, "£");
+        if (listeE != null) {
+            for (Etat etat : listeE) {
+                System.out.println(etat);
+
+            }
+        } 
+        else System.out.println("pas d'etat acessible avec cette etiquette");
+            
 
     }
 
