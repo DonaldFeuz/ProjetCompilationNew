@@ -39,7 +39,11 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         Regex = sc.next();
         ControlRegex rex = new ControlRegex();
+<<<<<<< HEAD
+        System.out.println(rex.VerifierQueLeRegexEstBienParentheser(")))a8b(+bs(("));
+=======
         //System.out.println(rex.VerifierQueLeRegexEstBienParentheser("(((a8b)+bs))"));
+>>>>>>> 1d4d2ee68db25259ca9bd613de2f51178062b3e5
 
         ControlRegex c= new ControlRegex();
        // c.TransformeUnRegexSousFormePostfixe("+", " ", tab);
@@ -62,6 +66,9 @@ public class Main {
             // String s = "a";
 
 
+<<<<<<< HEAD
+        System.out.println(c.VerifierQueLeRegexEstBienFormer("00m+(8a)+m+a"));
+=======
             if (Alphabet.contains(String.valueOf(Regex.charAt(i)))) {
 
                 automateAFN = transitionAFN.construireTransitionAFNSinple(String.valueOf(Regex.charAt(i)));
@@ -93,6 +100,7 @@ public class Main {
 
         // System.out.println(c.VerifierQueLeRegexEstBienFormer("gm+a\n"));
         System.out.println(d.MotAppartenirAlphabet("bbaac","cad"));
+>>>>>>> 1d4d2ee68db25259ca9bd613de2f51178062b3e5
         // VerifierQueLeRegexEstBienFormer(Regex);
         // VerifierQueLeRegexEstBienParentheser(Regex);
         // RecupérationAlphabetDuRegex(Regex);

@@ -1,7 +1,10 @@
 package automate;
 
 import java.util.ArrayList;
+<<<<<<< HEAD
+=======
 import java.util.Collection;
+>>>>>>> 1d4d2ee68db25259ca9bd613de2f51178062b3e5
 import java.util.HashMap;
 import java.util.List;
 
@@ -34,16 +37,49 @@ public class AutomateAFN {
 
     public ArrayList<Etat> GetEtatFinales() {
         return EtatFinales;
+<<<<<<< HEAD
+=======
     }
 
     public Etat GetEtatinitiale() {
         return EtatInitiale;
+>>>>>>> 1d4d2ee68db25259ca9bd613de2f51178062b3e5
     }
 
     public ArrayList<TransitionAFN> GetTransitions() {
         return TransitionsAFN;
     }
 
+<<<<<<< HEAD
+    public ArrayList<Etat> fermeture(Etat Etat,ArrayList<Etat> Etats ) {
+            int taille= Etats.size();
+        for (TransitionAFN transition :  this.TransitionsAFN) {
+            for (Etat etat : transition.GetValeur().keySet()) {
+                if (Etat.GetEtat()==etat.GetEtat()) {
+                    HashMap<ArrayList<Etat>, String> Valeur=transition.GetValeur().get(etat);
+                    for ( ArrayList<Etat> iterable : Valeur.keySet()) {
+                        String val;
+                        if (( val = Valeur.get(iterable))=="£") {
+                           if (!Etats.contains(Etat)) {
+                            Etats.add(Etat);
+                           }
+                           for ( Etat iterable_element : iterable) {
+                               if (!Etats.contains(iterable_element)) {
+                                Etats.add(iterable_element);
+                               }
+                           } 
+                        }
+                    } 
+                }
+            }
+        }
+        if ( taille!=Etats.size()) {
+            for (Etat etat2 : Etats) {
+              fermeture(etat2 , Etats ) ;
+            }
+        }  
+        return Etats;
+=======
     public List<Etat> GetEtatTransitions(List<TransitionAFN> listetransition, int etat, String etiquete) {
 
         List<Etat> listeDesetats = null;
@@ -76,6 +112,7 @@ public class AutomateAFN {
 
         // }
         return listeDesetats;
+>>>>>>> 1d4d2ee68db25259ca9bd613de2f51178062b3e5
     }
 
     // public void SetEtats() {
